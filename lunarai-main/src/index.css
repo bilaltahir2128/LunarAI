@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 230 25% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 230 30% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 230 30% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 230 30% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 230 25% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 262 70% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 262 50% 30%;
+    --input: 230 30% 15%;
+    --ring: 262 83% 58%;
+
+    --radius: 0.75rem;
+
+    /* Custom LunarAI colors */
+    --lunar-purple: 262 83% 58%;
+    --lunar-purple-light: 262 83% 70%;
+    --lunar-violet: 270 70% 65%;
+    --lunar-cyan: 190 90% 50%;
+    --lunar-pink: 320 80% 60%;
+    --lunar-dark: 230 25% 7%;
+    --lunar-card: 230 30% 10%;
+    --lunar-glow: 262 83% 58%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(262, 83%, 58%) 0%, hsl(320, 80%, 60%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(190, 90%, 50%) 0%, hsl(262, 83%, 58%) 50%, hsl(320, 80%, 60%) 100%);
+    --gradient-card-border: linear-gradient(135deg, hsl(262, 50%, 40%) 0%, hsl(262, 50%, 25%) 100%);
+
+    --sidebar-background: 230 25% 7%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 230 30% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 262 50% 30%;
+    --sidebar-ring: 262 83% 58%;
+  }
+
+  .dark {
+    --background: 230 25% 7%;
+    --foreground: 210 40% 98%;
+    --card: 230 30% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 230 30% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 230 30% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 230 25% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 262 70% 50%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 262 50% 30%;
+    --input: 230 30% 15%;
+    --ring: 262 83% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--lunar-purple-light)) 0%, hsl(var(--lunar-violet)) 100%);
+  }
+
+  .glow-text {
+    text-shadow: 
+      0 0 10px hsl(var(--lunar-purple) / 0.8),
+      0 0 20px hsl(var(--lunar-purple) / 0.6),
+      0 0 40px hsl(var(--lunar-violet) / 0.4),
+      0 0 60px hsl(var(--lunar-pink) / 0.3);
+    animation: text-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes text-glow {
+    from {
+      text-shadow: 
+        0 0 10px hsl(var(--lunar-purple) / 0.8),
+        0 0 20px hsl(var(--lunar-purple) / 0.6),
+        0 0 40px hsl(var(--lunar-violet) / 0.4),
+        0 0 60px hsl(var(--lunar-pink) / 0.3);
+    }
+    to {
+      text-shadow: 
+        0 0 15px hsl(var(--lunar-purple) / 1),
+        0 0 30px hsl(var(--lunar-purple) / 0.8),
+        0 0 50px hsl(var(--lunar-violet) / 0.6),
+        0 0 80px hsl(var(--lunar-pink) / 0.5);
+    }
+  }
+
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+    border-radius: var(--radius);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(var(--lunar-purple) / 0.5) 0%, hsl(var(--lunar-purple) / 0.2) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 40px hsl(var(--lunar-purple) / 0.3),
+                0 0 80px hsl(var(--lunar-purple) / 0.1);
+  }
+
+  .card-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--lunar-purple) / 0.4),
+                0 4px 20px hsl(var(--lunar-purple) / 0.2);
+  }
+
+  .neon-border {
+    border: 1px solid hsl(var(--lunar-purple) / 0.4);
+    box-shadow: inset 0 0 20px hsl(var(--lunar-purple) / 0.1),
+                0 0 20px hsl(var(--lunar-purple) / 0.2);
+  }
+
+  .section-gradient {
+    background: linear-gradient(180deg, 
+      hsl(var(--lunar-dark)) 0%, 
+      hsl(230, 30%, 10%) 50%,
+      hsl(var(--lunar-dark)) 100%);
+  }
+
+  .cta-gradient {
+    background: linear-gradient(135deg, 
+      hsl(190, 70%, 40%) 0%, 
+      hsl(262, 60%, 45%) 50%, 
+      hsl(300, 60%, 50%) 100%);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+}
