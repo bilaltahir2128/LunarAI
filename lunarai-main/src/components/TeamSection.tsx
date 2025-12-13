@@ -1,18 +1,19 @@
 import { motion } from "framer-motion";
-
+import umar from "@/assets/DSC_1550 copy (1).jpg";
+import abd from "@/assets/DSC_1544 copy.jpg"
 const TeamSection = () => {
   const team = [
     {
-      name: "Alex Morrison",
-      role: "CEO & AI Strategist",
+      name: "Muhammad Umar",
+      role: "Chief of Operations",
       description: "Leading AI automation innovation for enterprise solutions",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+      image: umar,
     },
     {
-      name: "Sarah Chen",
-      role: "CTO & ML Engineer",
+      name: "Muhammad Abdullah",
+      role: "CEO & AI Strategist",
       description: "Building cutting-edge AI systems and neural networks",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face",
+      image: abd,
     },
     {
       name: "Marcus Johnson",
