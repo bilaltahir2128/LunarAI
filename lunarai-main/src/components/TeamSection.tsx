@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import umar from "@/assets/DSC_1550 copy (2).jpg";
 import abd from "@/assets/DSC_1544 copy (1).jpg"
+import bilal from "@/assets/DSC_1546 copy.jpg"
 const TeamSection = () => {
   const team = [
     {
-      name: "Muhammad Umar",
+      name: "Muhammad Bilal ",
       role: "Chief of Operations",
       description: "Leading AI automation innovation for enterprise solutions",
-      image: umar,
+      image: bilal,
     },
     {
       name: "Muhammad Abdullah",
@@ -16,10 +17,10 @@ const TeamSection = () => {
       image: abd,
     },
     {
-      name: "Marcus Johnson",
+      name: "Muhammad Umar",
       role: "Head of Automation",
       description: "Designing seamless workflow automation solutions",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+      image: umar,
     },
   ];
 
