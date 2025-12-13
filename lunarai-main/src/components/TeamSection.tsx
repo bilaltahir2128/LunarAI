@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import umar from "@/assets/DSC_1550 copy (2).jpg";
+import umar from "@/assets/DSC_1550 copy (1).jpg";
 import abd from "@/assets/DSC_1544 copy (1).jpg"
 import bilal from "@/assets/DSC_1546 copy.jpg"
 const TeamSection = () => {
