@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import umar from "@/assets/DSC_1550 copy (4).jpg";
-import abd from "@/assets/DSC_1544 copy (1).jpg"
-import bilal from "@/assets/DSC_1546 copy.jpg"
+import umar from "@/assets/umar.webp";
+import abd from "@/assets/abdullah.webp"
+import bilal from "@/assets/bilal.webp"
 const TeamSection = () => {
   const team = [
     {
