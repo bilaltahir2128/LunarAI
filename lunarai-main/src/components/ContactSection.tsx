@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin , Instagram } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
@@ -92,14 +92,14 @@ const ContactSection = () => {
       detail: "hello@lunarai.com",
     },
     {
-      icon: Phone,
-      title: "Call Us",
-      detail: "+1 (555) 123-4567",
+      icon: Instagram,
+      title: "DM us",
+      detail: "@lunar_ai1",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      detail: "San Francisco, CA",
+      detail: "Islamabad , Pakistan",
     },
   ];
 

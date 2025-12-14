@@ -4,25 +4,25 @@ import abd from "@/assets/abdullah.webp"
 import bilal from "@/assets/bilal.webp"
 const TeamSection = () => {
   const team = [
-    {
-      name: "Muhammad Bilal ",
-      role: "Chief of Operations",
-      description: "Leading AI automation innovation for enterprise solutions",
-      image: bilal,
-    },
-    {
-      name: "Muhammad Abdullah",
-      role: "CEO & AI Strategist",
-      description: "Building cutting-edge AI systems and neural networks",
-      image: abd,
-    },
-    {
-      name: "Muhammad Umar",
-      role: "Head of Automation",
-      description: "Designing seamless workflow automation solutions",
-      image: umar,
-    },
-  ];
+  {
+    name: "Muhammad Bilal",
+    role: "Chief Technology Officer (CTO)", // or "Chief Solutions Architect"
+    description: "Leading AI automation innovation for enterprise solutions",
+    image: bilal,
+  },
+  {
+    name: "Muhammad Abdullah",
+    role: "CEO & AI Strategist",
+    description: "Building cutting-edge AI systems and neural networks",
+    image: abd,
+  },
+  {
+    name: "Muhammad Umar",
+    role: "Chief of Operations",
+    description: "Designing seamless workflow automation solutions",
+    image: umar,
+  }
+]
 
   const containerVariants = {
     hidden: { opacity: 0 },
