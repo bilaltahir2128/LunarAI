@@ -89,7 +89,7 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email Us",
-      detail: "hello@lunarai.com",
+      detail: "admin@lunarai.agency",
     },
     {
       icon: Instagram,

@@ -17,9 +17,9 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Mail, href: "mailto:contact@lunarai.com", label: "Email" },
+    { icon: Mail, href: "mailto:admin@lunarai.agency", label: "Email" },
     { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Instagram, href: "https://www.instagram.com/lunar_ai1/", label: "Instagram" },
   ];
 
   return (

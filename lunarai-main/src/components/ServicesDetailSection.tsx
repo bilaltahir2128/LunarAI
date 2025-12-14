@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
-import voiceAiImage from "@/assets/voice-ai.png";
-import customerSupportImage from "@/assets/customer-support.png";
-import socialMediaImage from "@/assets/social-media.png";
-import leadGenImage from "@/assets/lead-gen.png";
+import voiceAiImage from "@/assets/voice-ai.webp";
+import customerSupportImage from "@/assets/customer-support.webp";
+import socialMediaImage from "@/assets/social-media.webp";
+import leadGenImage from "@/assets/lead-gen.webp";
 
 interface ServiceFeature {
   text: string;
