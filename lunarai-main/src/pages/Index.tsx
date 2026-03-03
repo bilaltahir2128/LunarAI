@@ -15,11 +15,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <AnimatePresence>
-        {isLoading && (
-          <LoadingScreen onComplete={() => setIsLoading(false)} />
-        )}
+        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
-      
+
       {!isLoading && (
         <>
           <Navbar />
