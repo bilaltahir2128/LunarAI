@@ -8,12 +8,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    proxy: {
-      "/api": {
-        target: "http://localhost:3001",
-        changeOrigin: true,
-      },
-    },
   },
   plugins: [
     react(),
@@ -30,7 +24,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     // 1. Increase the warning limit so Vite doesn't complain about 500kb chunks
     chunkSizeWarningLimit: 1000,
-
+    
     rollupOptions: {
       output: {
         // 2. Manual Chunks: Split heavy libraries into their own files

@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mail, Phone, MapPin, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin , Instagram } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
   DialogContent,
@@ -26,7 +27,7 @@ const ContactSection = () => {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-
+    
     if (!formData.firstName.trim()) {
       newErrors.firstName = "First name is required";
     }
@@ -47,33 +48,27 @@ const ContactSection = () => {
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     }
-
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     if (!validateForm()) {
       return;
     }
-
+    
     setIsSubmitting(true);
-
+    
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-
+      
+      if (error) throw error;
+      
       setShowSuccess(true);
       setFormData({
         firstName: "",
@@ -94,12 +89,12 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email Us",
-      detail: "admin@lunarai.agency",
+      detail: "hello@lunarai.com",
     },
     {
-      icon: Instagram,
-      title: "DM us",
-      detail: "@lunar_ai1",
+      icon: Phone,
+      title: "Call Us",
+      detail: "+1 (319) 123-4567",
     },
     {
       icon: MapPin,
@@ -146,11 +141,10 @@ const ContactSection = () => {
                   transition={{ delay: 0.1 }}
                   className="flex flex-col gap-2 w-full"
                 >
-                  <label htmlFor="firstName" className="text-xs sm:text-sm font-medium text-foreground">
+                  <label className="text-xs sm:text-sm font-medium text-foreground">
                     First Name <span className="text-destructive">*</span>
                   </label>
                   <Input
-                    id="firstName"
                     placeholder="John"
                     value={formData.firstName}
                     onChange={(e) => {
@@ -170,11 +164,10 @@ const ContactSection = () => {
                   transition={{ delay: 0.1 }}
                   className="flex flex-col gap-2 w-full"
                 >
-                  <label htmlFor="lastName" className="text-xs sm:text-sm font-medium text-foreground">
+                  <label className="text-xs sm:text-sm font-medium text-foreground">
                     Last Name <span className="text-destructive">*</span>
                   </label>
                   <Input
-                    id="lastName"
                     placeholder="Doe"
                     value={formData.lastName}
                     onChange={(e) => {
@@ -197,11 +190,10 @@ const ContactSection = () => {
                 transition={{ delay: 0.2 }}
                 className="flex flex-col gap-2 w-full"
               >
-                <label htmlFor="email" className="text-xs sm:text-sm font-medium text-foreground">
+                <label className="text-xs sm:text-sm font-medium text-foreground">
                   Email Address <span className="text-destructive">*</span>
                 </label>
                 <Input
-                  id="email"
                   type="email"
                   placeholder="john@company.com"
                   value={formData.email}
@@ -224,11 +216,10 @@ const ContactSection = () => {
                 transition={{ delay: 0.3 }}
                 className="flex flex-col gap-2 w-full"
               >
-                <label htmlFor="company" className="text-xs sm:text-sm font-medium text-foreground">
+                <label className="text-xs sm:text-sm font-medium text-foreground">
                   Company Name <span className="text-destructive">*</span>
                 </label>
                 <Input
-                  id="company"
                   placeholder="Your Company"
                   value={formData.company}
                   onChange={(e) => {
@@ -250,25 +241,24 @@ const ContactSection = () => {
                 transition={{ delay: 0.4 }}
                 className="flex flex-col gap-2 w-full"
               >
-                <label htmlFor="service" className="text-xs sm:text-sm font-medium text-foreground">
+                <label className="text-xs sm:text-sm font-medium text-foreground">
                   Service Interest <span className="text-destructive">*</span>
                 </label>
                 <select
-                  id="service"
                   value={formData.service}
                   onChange={(e) => {
                     setFormData({ ...formData, service: e.target.value });
                     if (errors.service) setErrors({ ...errors, service: "" });
                   }}
-                  className={`flex h-10 sm:h-12 w-full rounded-lg border bg-secondary px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-foreground ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 ${errors.service ? "border-destructive" : "border-border/50"
-                    }`}
+                  className={`flex h-10 sm:h-12 w-full rounded-lg border bg-secondary px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-foreground ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 ${
+                    errors.service ? "border-destructive" : "border-border/50"
+                  }`}
                 >
                   <option value="">Select a service</option>
                   <option value="Voice AI Agents">Voice AI Agents</option>
                   <option value="AI Customer Support">AI Customer Support</option>
                   <option value="Social Media Automation">Social Media Automation</option>
                   <option value="Lead Generation">Lead Generation</option>
-                  <option value="AI Web Development">AI Web Development</option>
                 </select>
                 {errors.service && (
                   <span className="text-xs text-destructive">{errors.service}</span>
@@ -283,11 +273,10 @@ const ContactSection = () => {
                 transition={{ delay: 0.5 }}
                 className="flex flex-col gap-2 w-full"
               >
-                <label htmlFor="message" className="text-xs sm:text-sm font-medium text-foreground">
+                <label className="text-xs sm:text-sm font-medium text-foreground">
                   Message <span className="text-destructive">*</span>
                 </label>
                 <textarea
-                  id="message"
                   placeholder="Tell us about your automation needs..."
                   rows={4}
                   value={formData.message}
@@ -295,8 +284,9 @@ const ContactSection = () => {
                     setFormData({ ...formData, message: e.target.value });
                     if (errors.message) setErrors({ ...errors, message: "" });
                   }}
-                  className={`flex w-full rounded-lg border bg-secondary px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-foreground ring-offset-background transition-all duration-200 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 resize-none ${errors.message ? "border-destructive" : "border-border/50"
-                    }`}
+                  className={`flex w-full rounded-lg border bg-secondary px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-foreground ring-offset-background transition-all duration-200 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 resize-none ${
+                    errors.message ? "border-destructive" : "border-border/50"
+                  }`}
                 />
                 {errors.message && (
                   <span className="text-xs text-destructive">{errors.message}</span>
@@ -313,10 +303,10 @@ const ContactSection = () => {
                 whileTap={{ scale: 0.98 }}
                 className="w-full"
               >
-                <Button
+                <Button 
                   onClick={handleSubmit}
-                  variant="hero"
-                  size="xl"
+                  variant="hero" 
+                  size="xl" 
                   className="w-full mt-2 text-sm sm:text-base"
                   disabled={isSubmitting}
                 >
