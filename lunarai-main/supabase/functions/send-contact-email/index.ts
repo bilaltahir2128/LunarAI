@@ -30,7 +30,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const emailResponse = await resend.emails.send({
       from: "LunarAI <onboarding@resend.dev>",
-      to: ["umaar21800@gmail.com"],
+      to: ["admin@lunarai.agency"],
       subject: `New Contact Form Submission from ${formData.firstName} ${formData.lastName}`,
       html: `
         <h1>New Contact Form Submission</h1>

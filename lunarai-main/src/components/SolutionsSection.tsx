@@ -1,4 +1,4 @@
-import { Mic, Headphones, Instagram, TrendingUp } from "lucide-react";
+import { Mic, Headphones, Instagram, TrendingUp, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 
 const SolutionsSection = () => {
@@ -22,6 +22,11 @@ const SolutionsSection = () => {
       icon: TrendingUp,
       title: "Lead Generation AI",
       description: "Automate lead research and qualification scoring",
+    },
+    {
+      icon: Globe,
+      title: "AI Web Development",
+      description: "Professional websites integrated with intelligent chatbots and online booking systems",
     },
   ];
 
@@ -78,8 +83,8 @@ const SolutionsSection = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{ 
-                y: -10, 
+              whileHover={{
+                y: -10,
                 scale: 1.02,
                 transition: { duration: 0.2 }
               }}

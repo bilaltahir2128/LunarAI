@@ -6,6 +6,7 @@ import voiceAiImage from "@/assets/voice-ai.webp";
 import customerSupportImage from "@/assets/customer-support.webp";
 import socialMediaImage from "@/assets/social-media.webp";
 import leadGenImage from "@/assets/lead-gen.webp";
+import webDevImage from "@/assets/web-dev.png";
 
 interface ServiceFeature {
   text: string;
@@ -78,6 +79,20 @@ const services: ServiceData[] = [
     image: leadGenImage,
     imageAlt: "Lead Generation Funnel",
   },
+  {
+    id: "web-development",
+    badge: "Service 05",
+    title: "Professional AI Web Development",
+    description:
+      "Modern, responsive websites supercharged with AI. We integrate intelligent chatbots for customer support and automated online booking systems right into your web presence.",
+    features: [
+      { text: "Smart Chatbot Integration" },
+      { text: "Automated Booking Systems" },
+      { text: "Performance Optimized" },
+    ],
+    image: webDevImage,
+    imageAlt: "Web Development AI",
+  },
 ];
 
 const ServiceCard = ({
@@ -129,7 +144,7 @@ const ServiceCard = ({
               <span>{feature.text}</span>
             </motion.li>
           ))}
-      </ul>
+        </ul>
       </div>
 
       {/* Image */}
@@ -149,6 +164,8 @@ const ServiceCard = ({
           <img
             src={service.image}
             alt={service.imageAlt}
+            loading="lazy"
+            decoding="async"
             className="relative z-10 h-auto w-full rounded-2xl object-cover"
           />
         </motion.div>

@@ -76,6 +76,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Toggle */}
         <motion.button
+          aria-label={isOpen ? "Close menu" : "Open menu"}
           whileTap={{ scale: 0.9 }}
           className="flex h-10 w-10 items-center justify-center rounded-lg text-foreground md:hidden"
           onClick={() => setIsOpen(!isOpen)}
